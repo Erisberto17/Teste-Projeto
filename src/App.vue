@@ -7,6 +7,7 @@
         <RouterLink to="/about">About</RouterLink>
       </nav>
       <RouterView />
+      
   </header>
 
 </template>
