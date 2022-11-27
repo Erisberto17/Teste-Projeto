@@ -1,6 +1,9 @@
 <template>
     <nav>
-        <h1>Nav</h1>
+        <h1>CAMPANHA</h1>
+        <div>
+            
+        </div>
     </nav>
 </template>
 <script>
