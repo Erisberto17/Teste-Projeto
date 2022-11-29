@@ -9,22 +9,22 @@
             <p  class="acoes">Ações</p>
         </div>
         <div id="body">
-            <div id="rows">
+            <div id="rows" v-for="user in users" :key="user.id">
 
-                <a href="" id="name" class="name"><img class="user" src="../Imgs/rope-circle.png" alt="">Promobank</a>
-                <p id="start" class="start">24/09/1994</p>
+                <a href="" id="name" class="name"><img class="user" src="../Imgs/rope-circle.png" alt="">{{user.name}}</a>
+                <p id="start" class="start">{{ user.start }}</p>
                 <div id="creds" class="creds">
-                    <p><img src="../Imgs/check.png" alt="">12</p>
-                    <p><img src="../Imgs/minus.png" alt="">34</p>
-                    <p><img src="../Imgs/block.png" alt="">34</p>
+                    <p><img src="../Imgs/check.png" alt="">{{user.Creds.checked}}</p>
+                    <p><img src="../Imgs/minus.png" alt="">{{user.Creds.wait}}</p>
+                    <p><img src="../Imgs/block.png" alt="">{{user.Creds.blocked}}</p>
                 </div>
-                <div id="fila" class="fila"> <meter></meter> </div>
+                <div id="fila" class="fila"> <meter ></meter> </div>
                 <div id="consultas" class="consultas"><progress style="width:50px;"></progress></div>
                 <div id="acoes" class="acoes">
-                    <img src="../Imgs/play-button.png" alt="">
+                    <img  src="../Imgs/play-button.png" alt="">
                     <img src="../Imgs/Edit.png" alt="">
-                    <img src="../Imgs/Trash.png" alt="">
-                </div>
+                    <img @click="deleteData(user.id)" src="../Imgs/Trash.png" alt="">
+                </div> 
             </div>
         
         </div>
@@ -35,6 +35,33 @@
 
 export default {
     name:"Dashboard",
+    data(){
+        return{
+            users: null
+
+        }
+    },
+    methods:{
+        async getData(){
+            const req = await fetch("http://localhost:3000/users");
+
+            const res = await req.json()
+
+            this.users = res
+
+
+
+        },
+        async deleteData(id){
+            const req = await fetch(`http://localhost:3000/users/${id}`, {
+                method: "DELETE"
+            });
+            this.getData()
+        }
+    },
+    mounted(){
+        this.getData()
+    }
 }
 </script>
 <style scoped>
