@@ -30,7 +30,7 @@ export default {
         height: 25px;
     }
     nav{
-        height: 250px;
+        height: 150px;
         display: flex;
         justify-content: space-between;
         padding: 10px 20px;
@@ -61,7 +61,6 @@ export default {
         align-items: center;
         align-content: center;
         
-
     }
     nav .opt #user img{
         height: 20px; width: 15px;
