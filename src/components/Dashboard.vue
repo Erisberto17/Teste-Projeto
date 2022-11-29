@@ -48,6 +48,7 @@ export default {
             const res = await req.json()
 
             this.users = res
+            console.log(res)
 
 
 
@@ -56,11 +57,11 @@ export default {
             const req = await fetch(`http://localhost:3000/users/${id}`, {
                 method: "DELETE"
             });
-            this.getData()
+            this.getData();
         }
     },
     mounted(){
-        this.getData()
+        this.getData();
     }
 }
 </script>
