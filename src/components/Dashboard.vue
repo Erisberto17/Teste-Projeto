@@ -19,7 +19,7 @@
                     <p><img src="../Imgs/block.png" alt="">{{user.Creds.blocked}}</p>
                 </div>
                 <div id="fila" class="fila"> <meter ></meter> </div>
-                <div id="consultas" class="consultas"><progress style="width:50px;"></progress></div>
+                <div id="consultas" class="container"> <div class="progress-bar"></div></div>
                 <div id="acoes" class="acoes">
                     <img  src="../Imgs/play-button.png" alt="">
                     <img src="../Imgs/Edit.png" alt="">
@@ -95,5 +95,20 @@ export default {
         padding: 0 5px;
         justify-content: space-between;
         text-align: center;
+    }
+    .container {
+        height: 25px;
+        background-color: #CCC;
+        position: relative;
+    }
+    .container .progress-bar{
+       position: absolute;
+       height: 100%;
+       background-color: #0fd439;
+       animation: progress-animation 5s infinite;
+    }
+    @keyframes progress-animation{
+        0% { width: 0%; } 
+        100% { width: 100%}
     }
 </style>
