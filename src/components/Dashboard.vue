@@ -11,19 +11,22 @@
         <div id="body">
             <div id="rows" v-for="user in users" :key="user.id">
 
-                <a href="" id="name" class="name"><img class="user" src="../Imgs/rope-circle.png" alt="">{{user.name}}</a>
+                <a href="" id="name" class="name"><img id="user" src="../Imgs/rope-circle.png">{{user.name}}</a>
                 <p id="start" class="start">{{ user.start }}</p>
+                
                 <div id="creds" class="creds">
-                    <p><img src="../Imgs/check.png" alt="">{{user.Creds.checked}}</p>
-                    <p><img src="../Imgs/minus.png" alt="">{{user.Creds.wait}}</p>
-                    <p><img src="../Imgs/block.png" alt="">{{user.Creds.blocked}}</p>
+                    <p><img src="../Imgs/check.png">{{user.Creds.checked}}</p>
+                    <p><img src="../Imgs/minus.png">{{user.Creds.wait}}</p>
+                    <p><img src="../Imgs/block.png">{{user.Creds.blocked}}</p>
                 </div>
-                <div id="fila" class="fila"> <meter ></meter> </div>
-                <div id="consultas" class="container"> <div class="progress-bar"></div></div>
+
+                <div id="fila" class="fila"><meter></meter>  </div>
+                <BarConsu :consulta="user.consultas"/>
+                
                 <div id="acoes" class="acoes">
-                    <img  src="../Imgs/play-button.png" alt="">
-                    <img src="../Imgs/Edit.png" alt="">
-                    <img @click="deleteData(user.id)" src="../Imgs/Trash.png" alt="">
+                    <img  src="../Imgs/play-button.png">
+                    <img src="../Imgs/Edit.png">
+                    <img @click="deleteData(user.id)" src="../Imgs/Trash.png">
                 </div> 
             </div>
         
@@ -32,9 +35,14 @@
     </div>
 </template>
 <script>
+    import BarConsu from "./BarConsu.vue"
 
 export default {
     name:"Dashboard",
+    
+    components:{
+        BarConsu
+    },
     data(){
         return{
             users: null
@@ -66,13 +74,12 @@ export default {
 }
 </script>
 <style scoped>
-    .user{
-        width: 10px; height: 10px;
-        margin-right: 8px;
+    #user{
+       max-width: 10px; max-height: 10px;
         
     }
     .creds img, .acoes img{
-        width: 17px; height: 18px; 
+        width: 100px; height: 18px; 
         margin-left: 10px;
     
     }
@@ -95,20 +102,5 @@ export default {
         padding: 0 5px;
         justify-content: space-between;
         text-align: center;
-    }
-    .container {
-        height: 25px;
-        background-color: #CCC;
-        position: relative;
-    }
-    .container .progress-bar{
-       position: absolute;
-       height: 100%;
-       background-color: #0fd439;
-       animation: progress-animation 5s infinite;
-    }
-    @keyframes progress-animation{
-        0% { width: 0%; } 
-        100% { width: 100%}
     }
 </style>
